@@ -1,8 +1,18 @@
 import React from "react";
 import defaultProduct from "../assets/defaultProduct.png";
+import useProductCalls from "../hooks/useProductCalls";
 
 const ProductCards = ({ item }) => {
+  const { addOrderItem } = useProductCalls();
   console.log(item);
+
+  const addCart = () => {
+    addOrderItem({
+      ordered: true,
+      item_id: item?.id,
+      quantity: 1,
+    });
+  };
 
   return (
     <div className="max-w-sm bg-white border border-gray-400 rounded-lg shadow-xl w-[350px] h-[550px] p-2 cursor-pointer hover:scale-105 transition-all text-center">
@@ -26,7 +36,10 @@ const ProductCards = ({ item }) => {
         </div>
 
         <div>
-          <button className="inline-flex justify-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 ">
+          <button
+            className="inline-flex justify-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 "
+            onClick={() => addCart()}
+          >
             Add Cart
             <svg
               aria-hidden="true"

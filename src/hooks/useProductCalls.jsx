@@ -18,7 +18,25 @@ const useProductCalls = () => {
     }
   };
 
-  return { getAllItems };
+  const addOrderItem = async (itemData) => {
+    try {
+      const { data } = await axiosWithToken.post("orderitems/", itemData);
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getAllOrderItems = async (setOrderItems) => {
+    try {
+      const { data } = await axiosWithToken.get("orderitems/");
+      setOrderItems(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  return { getAllItems, addOrderItem, getAllOrderItems };
 };
 
 export default useProductCalls;
