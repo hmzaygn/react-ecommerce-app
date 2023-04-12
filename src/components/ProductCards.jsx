@@ -4,7 +4,6 @@ import useProductCalls from "../hooks/useProductCalls";
 
 const ProductCards = ({ item }) => {
   const { addOrderItem } = useProductCalls();
-  console.log(item);
 
   const addCart = () => {
     addOrderItem({

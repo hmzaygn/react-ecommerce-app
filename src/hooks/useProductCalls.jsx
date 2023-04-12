@@ -36,7 +36,16 @@ const useProductCalls = () => {
     }
   };
 
-  return { getAllItems, addOrderItem, getAllOrderItems };
+  const updateOrderItems = async (id, info) => {
+    console.log(info);
+    try {
+      const { data } = await axiosWithToken.patch(`orderitems/${id}/`, info);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  return { getAllItems, addOrderItem, getAllOrderItems, updateOrderItems };
 };
 
 export default useProductCalls;
