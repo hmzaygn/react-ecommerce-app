@@ -1,11 +1,8 @@
-import React from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import useAxios, { axiosPublic } from "./useAxios";
-import { fetchStart } from "../features/authSlice";
 
 const useProductCalls = () => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { axiosWithToken } = useAxios();
 
@@ -37,7 +34,6 @@ const useProductCalls = () => {
   };
 
   const updateOrderItems = async (id, info) => {
-    console.log(info);
     try {
       const { data } = await axiosWithToken.patch(`orderitems/${id}/`, info);
     } catch (error) {
@@ -45,7 +41,31 @@ const useProductCalls = () => {
     }
   };
 
-  return { getAllItems, addOrderItem, getAllOrderItems, updateOrderItems };
+  const deleteOrderItems = async (id, setOrderItems) => {
+    try {
+      const { data } = await axiosWithToken.delete(`orderitems/${id}/`);
+      getAllOrderItems(setOrderItems);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const createOrder = async (id, setOrderItems) => {
+    try {
+      const { data } = await axiosWithToken.delete(`orderitems/${id}/`);
+      getAllOrderItems(setOrderItems);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  return {
+    getAllItems,
+    addOrderItem,
+    getAllOrderItems,
+    updateOrderItems,
+    deleteOrderItems,
+  };
 };
 
 export default useProductCalls;
