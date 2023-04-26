@@ -38,8 +38,6 @@ const Profile = () => {
     setToggleAddress(!toggleAddress);
   };
 
-  console.log(address);
-
   return (
     <div className="text-center">
       <div className="p-20 flex flex-col justify-between gap-8 md:flex-row">
