@@ -43,6 +43,7 @@ const Orders = () => {
       });
 
       await createOrder(orderInfo);
+      setOrderItems([]);
     } else {
       alert("You don't have enough money in your purse");
     }
